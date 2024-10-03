@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Capture and Filter</title>
+
+    <!-- Link to CSS file using Flask's url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Image Capture and Filter</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture">Capture</button>
+    <select id="filter">
+        <option value="none">No Filter</option>
+        <option value="grayscale">Grayscale</option>
+        <option value="sepia">Sepia</option>
+        <option value="heart_filter">Heart Filter</option> <!-- Assuming 'heart_filter' is the custom filter -->
+    </select>
+    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <img id="photo" alt="Captured photo will appear here">
+    
+    <!-- Link to JavaScript file using Flask's url_for -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
