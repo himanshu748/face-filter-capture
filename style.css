@@ -1,17 +1,28 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-button, select {
-    margin: 10px 0;
-    padding: 5px 10px;
-}
-
-#photo {
-    max-width: 640px;
+    text-align: center;
     margin-top: 20px;
+}
+
+video, canvas {
+    border: 2px solid #ddd;
+    margin: 20px 0;
+}
+
+img#photo {
+    margin-top: 20px;
+    width: 640px;
+    height: 480px;
+    display: none; /* Hidden until a photo is captured */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
 }
