@@ -1,48 +1,41 @@
+// Access the video element and other DOM elements
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const photo = document.getElementById('photo');
 const captureButton = document.getElementById('capture');
 const filterSelect = document.getElementById('filter');
 
-// Start the video stream
+// Request camera access
 navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
         video.srcObject = stream;
+        video.play();
     })
     .catch(err => {
-        console.error("Error accessing the camera", err);
+        console.error('Error accessing the camera:', err);
     });
 
-// Capture the image and apply the filter
+// Capture the image from the video when the button is clicked
 captureButton.addEventListener('click', () => {
     const context = canvas.getContext('2d');
-    // Draw the image from the live camera feed onto the canvas
-    context.drawImage(video, 0, 0, 640, 480);
+    // Draw the current video frame on the canvas
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
     
-    // Convert the canvas content (captured image) into a base64 image data URL
-    const imageDataUrl = canvas.toDataURL('image/png');
-    
-    // Send the captured image and the selected filter to the Flask backend
-    fetch('/capture', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            image: imageDataUrl,
-            filter: filterSelect.value
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            // Show the captured image with the applied filter in the <img> tag
-            photo.src = `/static/images/${data.filename}`;
-        } else {
-            console.error('Error in response:', data);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    // Apply the selected filter
+    const filter = filterSelect.value;
+    canvas.style.filter = filter;
+
+    // Show the image in the img tag
+    const dataUrl = canvas.toDataURL('image/png');
+    photo.src = dataUrl;
+    photo.style.display = 'block'; // Display the captured photo
 });
+
+// Apply filter change in real-time as selected from the dropdown
+filterSelect.addEventListener('change', () => {
+    const filter = filterSelect.value;
+    video.style.filter = filter;
+});
+
+    
+    
