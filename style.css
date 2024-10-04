@@ -4,16 +4,9 @@ body {
     margin-top: 20px;
 }
 
-video, canvas {
+video, canvas, img {
     border: 2px solid #ddd;
     margin: 20px 0;
-}
-
-img#photo {
-    margin-top: 20px;
-    width: 640px;
-    height: 480px;
-    display: none; /* Hidden until a photo is captured */
 }
 
 button {
@@ -25,4 +18,11 @@ button {
 select {
     padding: 5px;
     font-size: 16px;
+}
+
+img#photo {
+    display: none;
+    margin-top: 20px;
+    width: 640px;
+    height: 480px;
 }
