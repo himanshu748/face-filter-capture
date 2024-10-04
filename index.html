@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Capture and Filter</title>
-
-    <!-- Directly linking to the CSS file (no Flask) -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Image Capture and Filter</h1>
     <video id="video" width="640" height="480" autoplay></video>
+    <br>
     <button id="capture">Capture</button>
     <select id="filter">
         <option value="none">No Filter</option>
-        <option value="grayscale">Grayscale</option>
-        <option value="sepia">Sepia</option>
-        <option value="heart_filter">Heart Filter</option> <!-- Assuming this is a custom filter -->
+        <option value="grayscale(100%)">Grayscale</option>
+        <option value="sepia(100%)">Sepia</option>
+        <option value="invert(100%)">Invert</option>
+        <option value="blur(5px)">Blur</option>
+        <option value="brightness(150%)">Brightness</option>
     </select>
     <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
     <img id="photo" alt="Captured photo will appear here">
-
-    <!-- Directly linking to the JavaScript file (no Flask) -->
+    
     <script src="js/main.js"></script>
 </body>
 </html>
-
